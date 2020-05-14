@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -25,12 +27,15 @@ public class Product {
 	Long product_id;
 	
 	@Field(type = FieldType.Text)
-	@NotEmpty
+	@NotEmpty(message = "Product name cannot be empty")
 	String product_name;
 	String sku;
 	String upc;
-	String product_images_url;
+	@Size(min = 1, message = "You must provide at least one image")
+	List<String> product_images_url;
+	@NotEmpty(message = "Please provide a product description")
 	String product_description;
+	@NotEmpty(message = "Please provide the manufacturer name for the product")
 	String manufacturer;
 	BigDecimal product_item_weight;
 	
@@ -43,11 +48,11 @@ public class Product {
 	@Field(type = FieldType.Nested, includeInParent = true)
 	List<Product_Details> product_details;
 	
+	@PastOrPresent
 	@JsonSerialize(using = DateSerializer.class)
 	@JsonDeserialize(using = DateDeserializer.class)
 	Date date_posted;
 	
 	@Version
 	int version;
-	//TODO merchant/manufacture, technical information, warranty info, product details
 }
