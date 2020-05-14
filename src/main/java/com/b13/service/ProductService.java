@@ -13,5 +13,7 @@ public interface ProductService {
 
 	Optional<Product> deleteProductById(long id);
 
-	Optional<List<Product>> getProducts();
+	Optional<List<Product>> getProducts(int offset, int limit);
+
+	Optional<Product> updateProduct(Product product);
 }

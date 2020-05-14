@@ -41,8 +41,9 @@ public class ProductController {
 	}
 
 	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
-	public ResponseEntity<List<Product>> getProduct() {
-		return service.getProducts()
+	public ResponseEntity<List<Product>> getProducts(@RequestParam(name = "offset", defaultValue = "0") int offset,
+													 @RequestParam(name = "limit", defaultValue = "20") int limit) {
+		return service.getProducts(offset, limit)
 				.map(product -> ResponseEntity.status(HttpStatus.OK).body(product))
 				.orElseGet(() -> ResponseEntity.status(HttpStatus.NO_CONTENT).build());
 	}
@@ -55,8 +56,10 @@ public class ProductController {
 	}
 
 	@PutMapping(value="/{id}")
-	public ResponseEntity<?> updateProductById(HttpRequest request, @PathVariable int id, @RequestBody Product product) {
-		return service.createProduct(product)
+	public ResponseEntity<?> updateProductById(HttpRequest request,
+											   @PathVariable long id, @RequestBody Product product) {
+		product.setProduct_id(id);
+		return service.updateProduct(product)
 				.map(p -> ResponseEntity.status(HttpStatus.NO_CONTENT)
 						.header("Location", request.getURI()+"/"+p.getProduct_id())
 						.build())

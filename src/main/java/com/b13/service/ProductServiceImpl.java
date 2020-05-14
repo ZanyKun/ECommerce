@@ -2,10 +2,12 @@ package com.b13.service;
 
 import com.b13.dao.ProductRepository;
 import com.b13.dto.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 	ProductRepository repository;
 
@@ -16,16 +18,24 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Optional<Product> getProductById(long id) {
-		return Optional.empty();
+		return repository.findById(id);
 	}
 
 	@Override
 	public Optional<Product> deleteProductById(long id) {
-		return Optional.empty();
+		Optional<Product> retVal = repository.findById(id);
+		if (!retVal.isPresent())
+			repository.deleteById(id);
+		return retVal;
 	}
 
 	@Override
-	public Optional<List<Product>> getProducts() {
+	public Optional<List<Product>> getProducts(int offset, int limit) {
+		return repository.search(offset,limit);
+	}
+
+	@Override
+	public Optional<Product> updateProduct(Product product) {
 		return Optional.empty();
 	}
 }
