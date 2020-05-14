@@ -1,4 +1,4 @@
-package b13;
+package com.b13;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
