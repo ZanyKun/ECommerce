@@ -9,8 +9,8 @@ public class ProductServiceImpl implements ProductService {
 	ProductRepository repository;
 
 	@Override
-	public int createProduct(Product p) {
-		return repository.save(p).getId();
+	public long createProduct(Product p) {
+		return repository.save(p).getProduct_id();
 	}
 
 	@Override
