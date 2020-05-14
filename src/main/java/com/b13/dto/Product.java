@@ -29,6 +29,7 @@ public class Product {
 	String product_name;
 	String sku;
 	String upc;
+	String isbn;
 	String product_images_url;
 	String product_description;
 	String manufacturer;
