@@ -52,9 +52,6 @@ public class Product {
 	@Field(type = FieldType.Nested, includeInParent = true)
 	List<Product_Options> product_options;
 	
-	@Field(type = FieldType.Nested, includeInParent = true)
-	List<Product_Details> product_details;
-	
 	@PastOrPresent
 	Date date_posted;
 	
