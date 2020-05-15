@@ -1,10 +1,9 @@
 package com.b13.service;
 
-import com.b13.dto.Product;
-
-import java.nio.channels.FileChannel;
 import java.util.List;
 import java.util.Optional;
+
+import com.b13.dto.Product;
 
 public interface ProductService {
 	Optional<Product> createProduct(Product p);

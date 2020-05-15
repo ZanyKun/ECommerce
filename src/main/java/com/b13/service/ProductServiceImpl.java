@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Optional<List<Product>> getProducts(int offset, int limit) {
-		return repository.search(offset,limit);
+		return null;
 	}
 
 	@Override

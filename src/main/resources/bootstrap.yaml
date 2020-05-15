@@ -6,3 +6,9 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+    
+management:  endpoint:    beans:      enabled: true
+      
+  metrics:    web:      server:        request:          autotime:            enabled: true
+    endpoints:    web:      exposure:        include:        - '*'
+      base-path: /product-management

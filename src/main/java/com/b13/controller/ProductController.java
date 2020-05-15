@@ -19,9 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.b13.dto.Product;
 import com.b13.service.ProductService;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
 
-
+@Timed
 @RestController
 @RequestMapping("/products")
 @AllArgsConstructor

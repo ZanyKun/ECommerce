@@ -56,5 +56,5 @@ public class Product {
 	Date date_posted;
 	
 	@Version
-	int version;
+	Long version;
 }
