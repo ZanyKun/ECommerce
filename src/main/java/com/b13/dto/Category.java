@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Category {
 	
-    long category_id;
     String category_name;
     Category subCategory;
     
