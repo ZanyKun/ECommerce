@@ -48,25 +48,25 @@ public class ProductControllerTest {
     
     @Test
     public void getProductById() throws Exception {
-    	when(service.getProductById(Mockito.anyLong())).thenReturn(Optional.of(new Product()));
+    	when(service.getProductById(Mockito.anyString())).thenReturn(Optional.of(new Product()));
     	mvc.perform(get("/products/1").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
     
     @Test
     public void getProductById2() throws Exception {
-    	when(service.getProductById(Mockito.anyLong())).thenReturn(Optional.empty());
+    	when(service.getProductById(Mockito.anyString())).thenReturn(Optional.empty());
     	mvc.perform(get("/products/1").accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
     }
     
     @Test
     public void deleteProductById() throws Exception {
-    	when(service.deleteProductById(Mockito.anyLong())).thenReturn(Optional.of(new Product()));
+    	when(service.deleteProductById(Mockito.anyString())).thenReturn(Optional.of(new Product()));
     	mvc.perform(delete("/products/1").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
     
     @Test
     public void deleteProductById2() throws Exception {
-    	when(service.deleteProductById(Mockito.anyLong())).thenReturn(Optional.empty());
+    	when(service.deleteProductById(Mockito.anyString())).thenReturn(Optional.empty());
     	mvc.perform(delete("/products/1").accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
     }
     

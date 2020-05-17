@@ -2,12 +2,16 @@ package com.b13.service;
 
 import com.b13.dao.ProductRepository;
 import com.b13.dto.Product;
+
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
 	ProductRepository repository;
 
@@ -17,12 +21,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Optional<Product> getProductById(long id) {
+	public Optional<Product> getProductById(String id) {
 		return repository.findById(id);
 	}
 
 	@Override
-	public Optional<Product> deleteProductById(long id) {
+	public Optional<Product> deleteProductById(String id) {
 		Optional<Product> retVal = repository.findById(id);
 		if (!retVal.isPresent())
 			repository.deleteById(id);

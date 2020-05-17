@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Generated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
@@ -24,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Document(indexName = "products", type = "main_product")
 public class Product {
 	@Id
-	Long product_id;
+	String product_id;
 	
 	@Field(type = FieldType.Text, analyzer="customanalyzer", searchAnalyzer="searchanalyzer")
 	@NotEmpty(message = "Product name cannot be empty")

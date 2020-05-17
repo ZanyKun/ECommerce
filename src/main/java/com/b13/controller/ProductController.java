@@ -44,7 +44,7 @@ public class ProductController {
 	}
 
 	@GetMapping(value="/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
-	public ResponseEntity<Product> getProduct(@PathVariable long id) {
+	public ResponseEntity<Product> getProduct(@PathVariable String id) {
 		
 		return ResponseEntity.of(service.getProductById(id));
 	}
@@ -58,15 +58,15 @@ public class ProductController {
 	}
 
 	@DeleteMapping(value="/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<Product> deleteProductById(@PathVariable long id) {
+	public ResponseEntity<Product> deleteProductById(@PathVariable String id) {
 		return service.deleteProductById(id)
 				.map(product -> ResponseEntity.status(HttpStatus.OK).body(product))
 				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-
+	
 	@PutMapping(value="/{id}")
 	public ResponseEntity<?> updateProductById(HttpServletRequest request,
-											   @PathVariable long id, @RequestBody Product product) {
+											   @PathVariable String id, @RequestBody Product product) {
 		product.setProduct_id(id);
 		return service.updateProduct(product)
 				.map(p -> ResponseEntity.status(HttpStatus.NO_CONTENT)
