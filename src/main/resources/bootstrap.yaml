@@ -12,3 +12,4 @@ management:  endpoint:    beans:      enabled: true
   metrics:    web:      server:        request:          autotime:            enabled: true
     endpoints:    web:      exposure:        include:        - '*'
       base-path: /product-management
+      

@@ -1,6 +1,7 @@
 package com.b13.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,7 @@ public class ProductController {
 
 	ProductService service;
 	
+	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
 	public ResponseEntity<?> createProduct(@RequestBody Product product, HttpRequest request) {
 		return service.createProduct(product)
@@ -40,10 +42,9 @@ public class ProductController {
 	}
 
 	@GetMapping(value="/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
-	public ResponseEntity<Product> getProduct(@PathVariable int id) {
-		return service.getProductById(id)
-				.map(product -> ResponseEntity.status(HttpStatus.OK).body(product))
-				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<Product> getProduct(@PathVariable long id) {
+		
+		return ResponseEntity.of(service.getProductById(id));
 	}
 
 	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
@@ -55,7 +56,7 @@ public class ProductController {
 	}
 
 	@DeleteMapping(value="/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<Product> deleteProductById(@PathVariable int id) {
+	public ResponseEntity<Product> deleteProductById(@PathVariable long id) {
 		return service.deleteProductById(id)
 				.map(product -> ResponseEntity.status(HttpStatus.OK).body(product))
 				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
