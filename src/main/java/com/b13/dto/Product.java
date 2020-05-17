@@ -26,7 +26,7 @@ public class Product {
 	@Id
 	Long product_id;
 	
-	@Field(type = FieldType.Text)
+	@Field(type = FieldType.Text, analyzer="customanalyzer", searchAnalyzer="searchanalyzer")
 	@NotEmpty(message = "Product name cannot be empty")
 	String product_name;
 	
@@ -47,10 +47,7 @@ public class Product {
 	BigDecimal product_item_weight;
 	
 	@Field(type = FieldType.Nested, includeInParent = true)
-	List<Category> product_categories;
-	
-	@Field(type = FieldType.Nested, includeInParent = true)
-	List<Product_Options> product_options;
+	Category product_categories;
 	
 	@PastOrPresent
 	Date date_posted;

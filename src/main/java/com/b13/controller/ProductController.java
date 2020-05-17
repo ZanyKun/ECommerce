@@ -22,6 +22,7 @@ import com.b13.service.ProductService;
 
 import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Timed
 @RestController
@@ -30,7 +31,6 @@ import lombok.AllArgsConstructor;
 public class ProductController {
 
 	ProductService service;
-	
 	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
 	public ResponseEntity<?> createProduct(@RequestBody Product product, HttpRequest request) {
