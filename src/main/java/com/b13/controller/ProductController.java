@@ -3,6 +3,8 @@ package com.b13.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,10 +35,10 @@ public class ProductController {
 	ProductService service;
 	
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
-	public ResponseEntity<?> createProduct(@RequestBody Product product, HttpRequest request) {
+	public ResponseEntity<?> createProduct(@RequestBody Product product, HttpServletRequest request) {
 		return service.createProduct(product)
 				.map(p -> ResponseEntity.status(HttpStatus.CREATED)
-						.header("Location", request.getURI()+"/"+p.getProduct_id())
+						.header("Location", request.getRequestURI()+"/"+p.getProduct_id())
 						.build())
 				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build());
 	}
@@ -63,12 +65,12 @@ public class ProductController {
 	}
 
 	@PutMapping(value="/{id}")
-	public ResponseEntity<?> updateProductById(HttpRequest request,
+	public ResponseEntity<?> updateProductById(HttpServletRequest request,
 											   @PathVariable long id, @RequestBody Product product) {
 		product.setProduct_id(id);
 		return service.updateProduct(product)
 				.map(p -> ResponseEntity.status(HttpStatus.NO_CONTENT)
-						.header("Location", request.getURI()+"/"+p.getProduct_id())
+						.header("Location", request.getRequestURI()+"/"+p.getProduct_id())
 						.build())
 				.orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build());
 	}
