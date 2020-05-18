@@ -1,11 +1,10 @@
 package com.b13.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,6 @@ import com.b13.service.ProductService;
 
 import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 @Timed
 @RestController
@@ -68,6 +66,7 @@ public class ProductController {
 	public ResponseEntity<?> updateProductById(HttpServletRequest request,
 											   @PathVariable String id, @RequestBody Product product) {
 		product.setProduct_id(id);
+		product.setVersion(System.currentTimeMillis());
 		return service.updateProduct(product)
 				.map(p -> ResponseEntity.status(HttpStatus.NO_CONTENT)
 						.header("Location", request.getRequestURI()+"/"+p.getProduct_id())

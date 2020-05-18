@@ -15,4 +15,6 @@ public interface ProductService {
 	Optional<List<Product>> getProducts(int offset, int limit);
 
 	Optional<Product> updateProduct(Product product);
+	
+	List<String> autoComplete(String keyword);
 }

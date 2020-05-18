@@ -4,13 +4,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Generated;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
+//import org.springframework.data.annotation.Version;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
@@ -24,6 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Document(indexName = "products", type = "main_product")
 public class Product {
+	
 	@Id
 	String product_id;
 	
@@ -52,6 +54,7 @@ public class Product {
 	
 	@PastOrPresent
 	Date date_posted;
+	
 	
 	@Version
 	Long version;
