@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-spring:  application:    name:      product-service  cloud:    config:      uri: http://${host:localhost}:8888eureka:  client:    register-with-eureka: true    fetch-registry: true    management:  endpoint:    beans:      enabled: true        metrics:    web:      server:        request:          autotime:            enabled: true    endpoints:    web:      exposure:        include:        - '*'      base-path: /product-management
-=======
 spring:
   application:
     name:
@@ -8,4 +5,3 @@ spring:
   cloud:
     config:
      uri: http://${config-host:3.87.29.41}:8888
->>>>>>> branch 'master' of https://github.com/ZanyKun/ECommerce
