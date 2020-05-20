@@ -6,9 +6,11 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 import brave.sampler.Sampler;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 @SpringBootApplication
 @EnableEurekaClient
+@EnableElasticsearchRepositories
 public class ProductServiceApplication {
 
 	public static void main(String[] args) {

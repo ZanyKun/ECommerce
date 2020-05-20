@@ -2,14 +2,19 @@ package com.b13.service;
 
 import com.b13.dao.ProductRepository;
 import com.b13.dto.Product;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
-	ProductRepository repository;
+
+	final ProductRepository repository;
+
 
 	@Override
 	public Optional<Product> createProduct(Product p) {
@@ -31,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Optional<List<Product>> getProducts(int offset, int limit) {
-		return null;
+		return Optional.empty();
 	}
 
 	@Override
