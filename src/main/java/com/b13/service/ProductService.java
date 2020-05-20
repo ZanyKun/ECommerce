@@ -8,11 +8,13 @@ import com.b13.dto.Product;
 public interface ProductService {
 	Optional<Product> createProduct(Product p);
 
-	Optional<Product> getProductById(long id);
+	Optional<Product> getProductById(String id);
 
-	Optional<Product> deleteProductById(long id);
+	Optional<Product> deleteProductById(String id);
 
 	Optional<List<Product>> getProducts(int offset, int limit);
 
 	Optional<Product> updateProduct(Product product);
+	
+	List<String> autoComplete(String keyword);
 }

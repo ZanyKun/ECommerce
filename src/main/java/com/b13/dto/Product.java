@@ -4,12 +4,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
+//import org.springframework.data.annotation.Version;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
@@ -23,10 +25,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Document(indexName = "products", type = "main_product")
 public class Product {
-	@Id
-	Long product_id;
 	
-	@Field(type = FieldType.Text)
+	@Id
+	String product_id;
+	
+	@Field(type = FieldType.Text, analyzer="customanalyzer", searchAnalyzer="searchanalyzer")
 	@NotEmpty(message = "Product name cannot be empty")
 	String product_name;
 	
@@ -47,13 +50,11 @@ public class Product {
 	BigDecimal product_item_weight;
 	
 	@Field(type = FieldType.Nested, includeInParent = true)
-	List<Category> product_categories;
-	
-	@Field(type = FieldType.Nested, includeInParent = true)
-	List<Product_Options> product_options;
+	Category product_categories;
 	
 	@PastOrPresent
 	Date date_posted;
+	
 	
 	@Version
 	Long version;

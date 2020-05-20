@@ -1,5 +1,7 @@
 package com.b13.dto;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,5 +13,6 @@ public class Category {
 	
     String category_name;
     Category subCategory;
+    BigDecimal priceAdjustment;
     
 }
